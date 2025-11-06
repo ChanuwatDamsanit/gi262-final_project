@@ -16,7 +16,7 @@ using UnityEngine;
 
         }
 
-        private void LoadConversations()
+        protected virtual void LoadConversations()
         {
             // NPC: Ah, traveler! What brings you to this old place?
             //     |
@@ -67,7 +67,7 @@ using UnityEngine;
         }
 
     // **เมธอดใหม่สำหรับรับการเลือกจากปุ่ม UI**
-    public void SelectChoice(int index)
+    public virtual void SelectChoice(int index)
     {
         var choiceTextKeys = new List<string>(currentNode.nexts.Keys);
 

@@ -20,10 +20,15 @@ public class DialogueUI : MonoBehaviour
     public void Setup(DialogueSequen sequen)
     {
         this.InterractNpcSequen = sequen;
-        DialogueNode currentNode = InterractNpcSequen.tree.root;
-        ShowDialogue(currentNode);
+
+        // Reset to start of conversation every time
+        DialogueNode startNode = InterractNpcSequen.tree.root;
+        InterractNpcSequen.currentNode = startNode;
+
+        ShowDialogue(startNode);
 
         closeButtonDialogue.SetActive(false);
+        dialoguePanel.SetActive(true);
         gameObject.SetActive(true);
     }
 

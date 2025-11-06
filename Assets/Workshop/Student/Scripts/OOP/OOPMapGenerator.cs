@@ -16,6 +16,7 @@ namespace Solution
         public Vector2Int playerStartPos;
         [Header("Set NPC")]
         public NPC Npc;
+        public NPC Healer;
         public NPCSkill NpcSkill;
         [Header("Set Exit")]
         public OOPExit Exit;
@@ -117,10 +118,13 @@ namespace Solution
         private void SetUpNpc()
         {
             mapdata[Npc.positionX, Npc.positionY] = Npc;
+            mapdata[Healer.positionX, Healer.positionY] = Healer;
             mapdata[NpcSkill.positionX, NpcSkill.positionY] = NpcSkill;
             Npc.transform.position = new Vector3(Npc.positionX, Npc.positionY, 0);
+            Healer.transform.position = new Vector3(Healer.positionX, Healer.positionY, 0);
             NpcSkill.transform.position = new Vector3(NpcSkill.positionX, NpcSkill.positionY, 0);
             Npc.mapGenerator = this;
+            Healer.mapGenerator = this;
             NpcSkill.mapGenerator = this;
         }
         private void SetUpExit()
