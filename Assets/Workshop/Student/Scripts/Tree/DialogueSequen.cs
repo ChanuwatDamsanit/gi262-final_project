@@ -18,52 +18,48 @@ using UnityEngine;
 
         protected virtual void LoadConversations()
         {
-            // NPC: Ah, traveler! What brings you to this old place?
-            //     |
-            //     +-- [1] Can you give me a quest?
-            //     |       |
-            //     |       +-- NPC: I have a task for you. There’s a beast in the woods. Can you take care of it?
-            //     |               |
-            //     |               +-- [1] I’m ready for anything!
-            //     |               |       |
-            //     |               |       +-- NPC: You're not ready for this yet. Come back when you're stronger.
-            //     |               |
-            //     |               +-- [2] Maybe later.
-            //     |                       |
-            //     |                       +-- NPC: Safe travels, adventurer.
-            //     |
-            //     +-- [2] Where is the village?
-            //     |       |
-            //     |       +-- NPC: Follow the road south, and you’ll reach the village.
-            //     |
-            //     +-- [3] How do I get to the forest?
-            //     |       |
-            //     |       +-- NPC: Head west, into the forest. But beware, it's dangerous.
-            //     |
-            //     +-- [4] Goodbye.
-            //             |
-            //             +-- NPC: Safe travels, adventurer.
+        // NPC: Ah, traveler! What brings you to this old place?
+        //     |
+        //     +-- [1] Can you give me a quest?
+        //     |       |
+        //     |       +-- NPC: I have a task for you. There’s a beast in the woods. Can you take care of it?
+        //     |               |
+        //     |               +-- [1] I’m ready for anything!
+        //     |               |       |
+        //     |               |       +-- NPC: You're not ready for this yet. Come back when you're stronger.
+        //     |               |
+        //     |               +-- [2] Maybe later.
+        //     |                       |
+        //     |                       +-- NPC: Safe travels, adventurer.
+        //     |
+        //     +-- [2] Where is the village?
+        //     |       |
+        //     |       +-- NPC: Follow the road south, and you’ll reach the village.
+        //     |
+        //     +-- [3] How do I get to the forest?
+        //     |       |
+        //     |       +-- NPC: Head west, into the forest. But beware, it's dangerous.
+        //     |
+        //     +-- [4] Goodbye.
+        //             |
+        //             +-- NPC: Safe travels, adventurer.
 
-            // Create the dialogue nodes
-            DialogueNode greeting = new DialogueNode("Ah, traveler! What brings you to this old place?");
-            DialogueNode askForQuest = new DialogueNode("I have a task for you. There’s a beast in the woods. Can you take care of it?");
-            DialogueNode questDenied = new DialogueNode("You're not ready for this yet. Come back when you're stronger.");
-            DialogueNode directionsVillage = new DialogueNode("Follow the road south, and you’ll reach the village.");
-            DialogueNode directionsForest = new DialogueNode("Head west, into the forest. But beware, it's dangerous.");
-            DialogueNode goodbye = new DialogueNode("Safe travels, adventurer.");
-            DialogueNode noIdea = new DialogueNode("I'm afraid I can't help you with that.");
+        // Create the dialogue nodes
+        DialogueNode greeting = new DialogueNode("You’re finally awake... You’re underground, traveler.");
+        DialogueNode askHowToEscape = new DialogueNode("To get out, you must find two keys and bring them to the exit gate.");
+        DialogueNode askWhereAmI = new DialogueNode("This place is called the Forgotten Depths. Few ever see the sunlight again.");
+        DialogueNode goodbye = new DialogueNode("Stay safe down here, and don’t lose hope.");
 
-            // Build the tree, adding custom responses
-            greeting.AddNext(askForQuest, "Can you give me a quest?");
-            greeting.AddNext(directionsVillage, "Where is the village?");
-            greeting.AddNext(directionsForest, "How do I get to the forest?");
-            greeting.AddNext(goodbye, "Goodbye.");
+        // --- Dialogue flow ---
+        greeting.AddNext(askWhereAmI, "Where am I?");
+        greeting.AddNext(askHowToEscape, "How do I get out?");
+        greeting.AddNext(goodbye, "Goodbye.");
 
-            askForQuest.AddNext(questDenied, "I’m ready for anything!");
-            askForQuest.AddNext(goodbye, "Maybe later.");
+        askWhereAmI.AddNext(askHowToEscape, "How do I get out?");
+        askWhereAmI.AddNext(goodbye, "Goodbye.");
 
-            // Set up the root of the dialogue tree
-            tree = new DialogueTree(greeting);
+        // Set up the root of the dialogue tree
+        tree = new DialogueTree(greeting);
         }
 
     // **เมธอดใหม่สำหรับรับการเลือกจากปุ่ม UI**

@@ -1,4 +1,4 @@
-using UnityEngine;
+๏ปฟusing UnityEngine;
 
 namespace Solution
 {
@@ -7,7 +7,7 @@ namespace Solution
         public override bool Hit()
         {
             Debug.Log("Item: " + Name + " has been picked up.");
-            // ทำลายไอเท็มออกจากฉาก
+            // ยทร“ร…ร’รรครร ยทรงรรรยกยจร’ยกยฉร’ยก
             mapGenerator.player.inventory.AddItem(Name, 1);
             Destroy(gameObject);
             return true;
