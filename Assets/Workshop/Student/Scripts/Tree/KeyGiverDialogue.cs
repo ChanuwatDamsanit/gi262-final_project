@@ -4,7 +4,7 @@ using Solution;
 public class KeyGiverDialogue : DialogueSequen
 {
     [Header("References")]
-    public Character player; // Assign your player (must have Inventory component)
+    //public Character player; // Assign your player (must have Inventory component)
     private Inventory playerInventory; // cache inventory
 
     [Header("Key Info")]
@@ -17,7 +17,7 @@ public class KeyGiverDialogue : DialogueSequen
         DialogueNode greeting = new DialogueNode("Hey there, traveler. What do you want?");
         DialogueNode firstAsk = new DialogueNode("You want a key, huh? Say that again, I didn’t hear you.");
         DialogueNode deny = new DialogueNode("Then you don’t need a key, I guess.");
-        DialogueNode secondAsk = new DialogueNode("Fine, here’s your key. Don’t lose it!");
+        DialogueNode secondAsk = new KeyGiverDialogueNode("Fine, here’s your key. Don’t lose it!");
         DialogueNode alreadyHave = new DialogueNode("You already have a key. Don’t be greedy!");
         DialogueNode goodbye = new DialogueNode("Alright, see you around.");
 
@@ -42,7 +42,7 @@ public class KeyGiverDialogue : DialogueSequen
         }
 
         // Check if this is the key-giving node
-        if (currentNode != null && currentNode.text == "Fine, here’s your key. Don’t lose it!")
+        /*if (currentNode != null && currentNode.text == "Fine, here’s your key. Don’t lose it!")
         {
             if (playerInventory != null)
             {
@@ -63,6 +63,6 @@ public class KeyGiverDialogue : DialogueSequen
             {
                 Debug.LogWarning("Player has no Inventory component!");
             }
-        }
+        }*/
     }
 }

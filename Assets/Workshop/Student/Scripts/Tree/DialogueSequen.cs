@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Solution;
 
 
     public class DialogueSequen : MonoBehaviour
 {
     //public Character player;
-    public DialogueTree tree;
+        public DialogueTree tree;
         public DialogueNode currentNode;
         public DialogueUI dialogueUI; // ลาก DialogueUI Component มาใส่
+        public Character player;
 
-        public void Start()
+
+    public void Start()
         {
 
             LoadConversations();
@@ -75,32 +78,64 @@ using UnityEngine;
             // 1. เลื่อนไปยัง Dialogue Node ถัดไป
             currentNode = currentNode.nexts[choiceKey];
 
+            dialogueUI.ShowDialogue(currentNode);
             // 2. ตรวจสอบว่ามีตัวเลือกถัดไปหรือไม่ (จบการสนทนา)
-            if (currentNode.nexts.Count > 0)
+            if (currentNode.nexts.Count == 0)
             {
                 dialogueUI.ShowDialogue(currentNode); // แสดง Node ถัดไป
-                //if (currentNode.giveHp > 0) {
-                //    if (player != null)
-                //    {
-                //        player.energy = player.maxEnergy;  // restore full energy
-                //        Debug.Log(player.name + " is fully healed!");
-                //    }
-                //    else
-                //    {
-                //        Debug.LogWarning("No player assigned to HealerDialogue!");
-                //    }
-                }
 
-                if (currentNode is HealerDialogueNode) { 
-                
+
+            }
+
+            if (currentNode is HealerDialogueNode) 
+            {
+                if (player != null)
+                {
+                    player.energy = player.maxEnergy;
+                    Debug.Log($"{player.name} is fully healed by the healer!");
+                }
+                else
+                {
+                    Debug.LogWarning("HealerDialogueNode triggered but no player assigned in DialogueSequen.");
                 }
             }
+
+            else if (currentNode is KeyGiverDialogueNode)
+            {
+                // Get Inventory component
+                Inventory playerInventory = player != null ? player.GetComponent<Inventory>() : null;
+
+                if (playerInventory != null)
+                {
+                    string keyName = "Key";   // or set this in KeyGiverDialogueNode if you want dynamic
+                    int keyAmount = 2;        // or from keyNode.keysToGive
+
+                    // Only give if player doesn’t already have it
+                    if (!playerInventory.HasItem(keyName, keyAmount))
+                    {
+                        playerInventory.AddItem(keyName, keyAmount);
+                        Debug.Log($"{player.name} received {keyAmount}x {keyName}!");
+                    }
+                    else
+                    {
+                        // Replace dialogue text to show "already have" message
+                        currentNode = new DialogueNode("You already have a key. Don’t be greedy!");
+                        dialogueUI.ShowDialogue(currentNode);
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("Player has no Inventory component!");
+                }
+            }
+
+
             else
             {
                 // ถ้าไม่มีตัวเลือกถัดไป ถือว่าจบบทสนทนา
                 dialogueUI.ShowDialogue(currentNode);   // แสดงข้อความสุดท้าย
                 dialogueUI.ShowCloseButtonDialog();    // อาจเพิ่ม Delay และเรียก dialogueUI.HideDialogue() ที่นี่
-                                                      // หรือทำให้ปุ่ม "ปิด" แสดงขึ้นมา
+                                                       // หรือทำให้ปุ่ม "ปิด" แสดงขึ้นมา
             }
         }
     }

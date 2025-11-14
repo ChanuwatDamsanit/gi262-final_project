@@ -3,7 +3,7 @@ using Solution;
 
 public class HealerDialogue : DialogueSequen
 {
-    public Character player;
+    //public Character player;
     protected override void LoadConversations()
     {
         // Dialogue nodes
@@ -11,7 +11,7 @@ public class HealerDialogue : DialogueSequen
         DialogueNode tryToHelp = new DialogueNode("I can help you. But you need to say please.");
         DialogueNode sayAgain = new DialogueNode("Can you say it again?");
         DialogueNode playerNotSay = new DialogueNode("So no medicine for you!");
-        DialogueNode finish = new DialogueNode("That's it, take your medicine.");
+        DialogueNode finish = new HealerDialogueNode("That's it, take your medicine.");
         DialogueNode goodbye = new DialogueNode("Safe travels!");
 
         // --- Build tree ---
@@ -33,7 +33,7 @@ public class HealerDialogue : DialogueSequen
 
     }
 
-    public override void SelectChoice(int index) //no need
+    /*public override void SelectChoice(int index) //no need
     {
         base.SelectChoice(index);
 
@@ -50,6 +50,6 @@ public class HealerDialogue : DialogueSequen
                 Debug.LogWarning("No player assigned to HealerDialogue!");
             }
         }
-    }
+    }*/
 
 }

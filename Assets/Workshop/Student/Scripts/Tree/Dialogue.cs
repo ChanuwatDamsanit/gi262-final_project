@@ -32,16 +32,19 @@ using UnityEngine;
         }
     }
 
-       public class HealerDialogueNode : DialogueNode { 
-                public int giveHp = 0;
+    public class HealerDialogueNode : DialogueNode 
+{ 
+            public int giveHp = 10;
 
-            public HealerDialogueNode(string text) : base(text) { 
+            public HealerDialogueNode(string text) : base(text) 
+    { 
+
     }
         }
 
  public class KeyGiverDialogueNode : DialogueNode //explain class structure video progress
 {
-    public int giveKey = 0;
+    public int keysToGive = 2;
 
     public KeyGiverDialogueNode(string text) : base(text)
     {
