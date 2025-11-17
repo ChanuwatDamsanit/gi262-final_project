@@ -34,7 +34,6 @@ using UnityEngine;
 
     public class HealerDialogueNode : DialogueNode 
     {
-    //public int giveHp = 10;
     public bool healsToMax = true;
 
     public HealerDialogueNode(string text) : base(text) 
