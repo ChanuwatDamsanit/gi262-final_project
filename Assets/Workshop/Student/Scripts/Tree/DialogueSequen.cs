@@ -6,7 +6,6 @@ using Solution;
 
     public class DialogueSequen : MonoBehaviour
 {
-    //public Character player;
         public DialogueTree tree;
         public DialogueNode currentNode;
         public DialogueUI dialogueUI; // ลาก DialogueUI Component มาใส่
@@ -67,7 +66,7 @@ using Solution;
         }
 
     // **เมธอดใหม่สำหรับรับการเลือกจากปุ่ม UI**
-    public virtual void SelectChoice(int index) // fix this
+    public virtual void SelectChoice(int index) 
     {
         var choiceTextKeys = new List<string>(currentNode.nexts.Keys);
 

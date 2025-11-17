@@ -1017,8 +1017,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueUI: {fileID: 909015994}
   player: {fileID: 2142152727}
-  keyName: Key
-  keyAmount: 2
 --- !u!1 &634705955
 GameObject:
   m_ObjectHideFlags: 0
@@ -3567,7 +3565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8365133027701863277, guid: 896fac2834903504f8973b3186300203, type: 3}
       propertyPath: SkillCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8365133027701863277, guid: 896fac2834903504f8973b3186300203, type: 3}
       propertyPath: obsatcleCount
@@ -3640,7 +3638,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7578452236972505394, guid: ac23557fc0a9e674fa725a9b8e54037c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9013582004789095098, guid: ac23557fc0a9e674fa725a9b8e54037c, type: 3}
       propertyPath: Name
@@ -3654,6 +3652,10 @@ PrefabInstance:
       propertyPath: positionY
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9013582004789095098, guid: ac23557fc0a9e674fa725a9b8e54037c, type: 3}
+      propertyPath: mapGenerator
+      value: 
+      objectReference: {fileID: 760521284}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

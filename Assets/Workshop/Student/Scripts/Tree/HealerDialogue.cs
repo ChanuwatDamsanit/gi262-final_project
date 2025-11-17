@@ -3,7 +3,6 @@ using Solution;
 
 public class HealerDialogue : DialogueSequen
 {
-    //public Character player;
     protected override void LoadConversations()
     {
         // Dialogue nodes
@@ -32,24 +31,4 @@ public class HealerDialogue : DialogueSequen
         tree = new DialogueTree(greeting);
 
     }
-
-    /*public override void SelectChoice(int index) //no need
-    {
-        base.SelectChoice(index);
-
-        // If the current dialogue is "finish" node → heal player
-        if (currentNode != null && currentNode.text == "That's it, take your medicine.")
-        {
-            if (player != null)
-            {
-                player.energy = player.maxEnergy;  // restore full energy
-                Debug.Log(player.name + " is fully healed!");
-            }
-            else
-            {
-                Debug.LogWarning("No player assigned to HealerDialogue!");
-            }
-        }
-    }*/
-
 }
